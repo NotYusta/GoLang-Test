@@ -10,27 +10,17 @@ func GenerateRegexWord(value string) string {
 	var words []string 
 	for _, word := range strings.Split(value, "") {
 		if word == "a" {
-			word = "(" + "a|@" + ")"
-		}
-
-		if word == "1" || word == "i" {
+			word = "(" + "a|@?" + ")"
+		} else if word == "1" || word == "i" {
 			word = "(" +  "1|i" +")"
-		}
-
-		if word == "u" || word == "0" || word == "o" {
+		} else if word == "u" || word == "0" || word == "o" {
 			word = "(" + "u|0|o" + ")"
-		}
-
-		if word == "3" || word == "e" {
+		} else if word == "3" || word == "e" {
 			word = "(" + "3|e" + ")"
-		}
-
-		if word == "9" || word == "6" || word == "g" {
+		} else if word == "9" || word == "6" || word == "g" {
 			word = "(" + "9|6|g" + ")"
-		}
-
-		if word == " " || word == "_" || word == "-" || word == "=" {
-			word = "(" + "_|-|=| |" + ")"
+		} else if word == " " || word == "_" || word == "-" || word == "=" {
+			word = "(.?)"
 		}
 
 		words = append(words, word)
@@ -40,18 +30,28 @@ func GenerateRegexWord(value string) string {
 }
 
 func Test() {
-	word := GenerateRegexWord("anjay_2")
+	anjayWordTest()
+}
+
+func anjayWordTest() {
+	println()
+	
+	originalWord := "anjay_2"
+	word := GenerateRegexWord(originalWord)
 	rwordgex, _ := regexp.Compile(word)
 	// word result
-	fmt.Println(word)
+	fmt.Println("original word: " + originalWord)
+	fmt.Println("regex pattern: " + word)
+	println()
 
 	// regex match result
 
 	regexTestWords := []string{
 		"anjay 2",
-		"anjay-2",
+		"njay 2",
+		"anj@y-2",
 		"anjay_2",
-		"anjay2",
+		"@njay2",
 		"anjay@2",
 	}
 
@@ -59,4 +59,6 @@ func Test() {
 		fmt.Println("word: " + regexTestWord)
 		fmt.Println("value: " + fmt.Sprintf("%v", rwordgex.MatchString(regexTestWord)))
 	}
+	
+	println()
 }

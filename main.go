@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"regexp"
 
+	"me.yusta/loop"
 	"me.yusta/regex"
 )
 
@@ -15,4 +16,5 @@ func main() {
 
 	fmt.Println(r.FindAllString("bakso baks0", 2))
 	regex.Test()
+	loop.Init()
 }

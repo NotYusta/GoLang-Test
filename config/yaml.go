@@ -23,6 +23,9 @@ type YamlStruct struct {
 		Regex struct {
 			All bool `yaml:"all"`
 		} `yaml:"regex"`
+		Midtrans struct {
+			All bool `yaml:"all"`
+		}
 	}
 	Midtrans struct {
 		ClientKey      string `yaml:"clientKey"`
@@ -34,14 +37,14 @@ type YamlStruct struct {
 func initYaml() *YamlStruct {
 	if *Flag.InitConfigExample {
 		yamlRes, _ := yaml.Marshal(&YamlStruct{})
-		os.WriteFile(".config.example.yml", yamlRes, 2)
+		os.WriteFile(".config.example.yml", yamlRes, 0755)
 	}
 
 	_, err := os.Stat(".config.yml")
 	if os.IsNotExist(err) {
 		fmt.Println("A configuration file was not found, a configuration has been generated.")
 		yamlRes, _ := yaml.Marshal(&YamlStruct{})
-		os.WriteFile(".config.yml", yamlRes, 2)
+		os.WriteFile(".config.yml", yamlRes, 0755)
 
 		os.Exit(1)
 	}

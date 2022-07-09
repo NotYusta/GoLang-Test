@@ -7,6 +7,8 @@ test:
         all: false
     regex:
         all: false
+    midtrans:
+        all: false
 midtrans:
     clientKey: ""
     serverKey: ""

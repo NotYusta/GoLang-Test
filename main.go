@@ -2,10 +2,12 @@ package main
 
 import (
 	"fmt"
+
 	"me.yusta/benchmark"
 	"me.yusta/config"
 	"me.yusta/httptest"
 	"me.yusta/loop"
+	"me.yusta/midtrans"
 	"me.yusta/regex"
 )
 
@@ -40,6 +42,10 @@ func main() {
 
 	if config.Yaml.Test.Loop.All {
 		loop.Init()
+	}
+
+	if config.Yaml.Test.Midtrans.All {
+		midtrans.InitMidtrans()
 	}
 
 

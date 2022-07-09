@@ -1,14 +1,14 @@
 package httptest
 
 import (
-	"fmt"
-	"net/url"
+	"net/http"
+
+	"me.yusta/config"
 )
 
 func Init() {
-	form := url.Values{}
-	form.Add("test", "s")
-	form.Add("test", "s2")
+	req, _ := http.NewRequest("POST", "nothing", nil)
 
-	fmt.Println(form)
+	req.SetBasicAuth(config.Yaml.Midtrans.ServerKey, "")
+
 }

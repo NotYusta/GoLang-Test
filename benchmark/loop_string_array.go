@@ -7,30 +7,43 @@ import (
 
 var stringArray []string = []string{
 	"something1",
-	"something2",
-	"something3",
 }
 
 func InitBenchmark() {
-	for i := 0; i < 100000000; i++ {
-		stringArray = append(stringArray, "something2a" + fmt.Sprintf("%v", i))
+	DoFindLoopBenchmark()
+	println()
+}
+
+func DoFindLoopBenchmark() {
+	for i := 0; i < 10000; i++ {
+
+		stringArray = append(stringArray, fmt.Sprintf("%v", i))
 	}
-	
+
+	stringArray[5000] = "something2"
+	stringArray[7999] = "something3"
+	stringArray[9999] = "something4"
 	fmt.Println("string array len: ", len(stringArray))
 	normalFindRes := testing.Benchmark(BenchmarkNormalFind)
 	explicitFindRes := testing.Benchmark(BenchmarkExplicitFind)
 
 	fmt.Println("Normal: ", normalFindRes.T)
 	fmt.Println("Explicit: ", explicitFindRes.T)
-}
-
+} 
 func BenchmarkNormalFind(t *testing.B) {
 	something1 := findOne("something1")
 	something2 := findOne("something2")
 	something3 := findOne("something3")
 	var something4 *string
 
-	fmt.Println(something1, something2, something3, something4)
+	result := []*string{
+		something1,
+		something2,
+		something3,
+		something4,
+	}
+	
+	t.Log(result)
 }
 
 func BenchmarkExplicitFind(t *testing.B) {
@@ -51,8 +64,14 @@ func BenchmarkExplicitFind(t *testing.B) {
 		}
 	}
 
-	fmt.Println(something1, something2, something3, something4)
-
+	result := []*string{
+		something1,
+		something2,
+		something3,
+		something4,
+	}
+	
+	t.Log(result)
 }
 
 func findOne(value string) *string {

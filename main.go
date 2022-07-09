@@ -2,22 +2,31 @@ package main
 
 import (
 	"fmt"
-	"regexp"
 
 	"me.yusta/benchmark"
+	"me.yusta/config"
+	"me.yusta/httptest"
 	"me.yusta/loop"
 	"me.yusta/regex"
 )
 
-
-
 func main() {
+	fmt.Println("Running Test-GO by (@Yusta)")
+	config.Init()
+	if config.Yaml.Test.Benchmark.All {
+		benchmark.InitBenchmark()
+	}
 
-	benchmark.InitBenchmark()
-	r, _ := regexp.Compile("(b(a|@)ks(o|0))")
+	if config.Yaml.Test.HttpTest.All {
+		httptest.Init()
+	}
 
-	fmt.Println(r.FindAllString("bakso baks0", 2))
-	regex.Test()
-	loop.Init()
+	if config.Yaml.Test.Regex.All {
+		regex.Test()
+	}
+
+	if config.Yaml.Test.Loop.All {
+		loop.Init()
+	}
 
 }

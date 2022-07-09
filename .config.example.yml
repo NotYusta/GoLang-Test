@@ -1,0 +1,13 @@
+test:
+    benchmark:
+        all: false
+    httpTest:
+        all: false
+    loop:
+        all: false
+    regex:
+        all: false
+midtrans:
+    clientKey: ""
+    serverKey: ""
+    productionMode: false

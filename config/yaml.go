@@ -32,7 +32,7 @@ type YamlStruct struct {
 }
 
 func initYaml() *YamlStruct {
-	if Flag.InitConfigExample {
+	if *Flag.InitConfigExample {
 		yamlRes, _ := yaml.Marshal(&YamlStruct{})
 		os.WriteFile(".config.example.yml", yamlRes, 2)
 	}

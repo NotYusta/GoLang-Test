@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	"os"
-
 	"me.yusta/benchmark"
 	"me.yusta/config"
 	"me.yusta/httptest"
@@ -12,10 +10,7 @@ import (
 )
 
 func main() {
-	fmt.Println("Running Test-GO by (@Yusta)")
 	config.Init()
-
-	
 
 	if *config.Flag.ShowHelp {
 		println()
@@ -26,8 +21,11 @@ func main() {
 		println("> help - Shows the argument list")
 		println("> init-config-example - Generate the config example")
 		println()
-		os.Exit(0)
+		return
 	}
+
+	fmt.Println("Running Test-GO by (@Yusta)")
+
 	if config.Yaml.Test.Benchmark.All {
 		benchmark.InitBenchmark()
 	}

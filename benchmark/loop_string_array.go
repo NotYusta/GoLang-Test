@@ -74,6 +74,7 @@ func BenchmarkExplicitFind(t *testing.B) {
 	t.Log(result)
 }
 
+
 func findOne(value string) *string {
 	for _, stValue := range stringArray {
 		if stValue == value {

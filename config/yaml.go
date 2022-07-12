@@ -26,6 +26,9 @@ type YamlStruct struct {
 		Midtrans struct {
 			All bool `yaml:"all"`
 		}
+		Number struct {
+			All bool `yaml:"all"`
+		}
 	}
 	Midtrans struct {
 		ClientKey      string `yaml:"clientKey"`

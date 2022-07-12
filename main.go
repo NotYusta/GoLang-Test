@@ -9,6 +9,7 @@ import (
 	"me.yusta/loop"
 	"me.yusta/midtrans"
 	"me.yusta/regex"
+	"me.yusta/number"
 )
 
 func main() {
@@ -46,6 +47,10 @@ func main() {
 
 	if config.Yaml.Test.Midtrans.All {
 		midtrans.InitMidtrans()
+	}
+
+	if config.Yaml.Test.Number.All {
+		number.Init()
 	}
 
 

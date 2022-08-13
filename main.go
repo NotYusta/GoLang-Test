@@ -11,7 +11,7 @@ import (
 	"me.yusta/regex"
 	"me.yusta/number"
 )
-
+// test
 func main() {
 	config.Init()
 
